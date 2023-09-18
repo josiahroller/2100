@@ -1,0 +1,24 @@
+#balance = 5000
+#annual interest is 18%
+
+def payment(low, high): #recursive function. Arguments are assumed to include answer
+  
+  #for each recursion
+  balance = 5000
+  monthly_interest = balance * (.18/12)
+  guess = (high + low)/2
+
+  for i in range(12): #iterate through 12 months
+    balance = balance + monthly_interest - guess
+
+  if (abs(balance) < 0.01): #base case
+    print("Payment: "+ str(guess))
+    print("Balance: "+ str(balance))
+  
+  elif (balance > 0): #guess was too small
+    payment(guess, high)
+
+  else: #guess was too large
+    payment(low, guess)
+
+payment(1, 5000)
